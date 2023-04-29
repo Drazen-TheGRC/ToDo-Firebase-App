@@ -52,7 +52,9 @@ button:active{
 
 input {
     color: #87796F;
-    background-color: #D7E057
+    background-color: #D7E057;
+    font-weight: bold;
+    
 }
 
 input::placeholder{
@@ -60,11 +62,14 @@ input::placeholder{
 }
 
 input:active, 
-input:focus{
+input:focus {
+    background-color: #D7E057;
     border-color: #87796F;
     color: #87796F;
-    font-weight: bold;
+    
 }
+
+
 
 button {
     color: #FAE6CA;

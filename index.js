@@ -21,12 +21,13 @@ const database = getDatabase(app)
 const toDoDatabase = ref(database, "toDoDatabase")
 
 
-/* App Stuff */ 
 
+/* App Stuff */ 
 const inputFieldEl = document.getElementById("input-field")
 const toDoButtonEl = document.getElementById("add-button")
 
 toDoButtonEl.addEventListener("click", function(){
+    // Input value
     let inputValue = inputFieldEl.value
     
     // Push input value to the db
