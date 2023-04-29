@@ -19,7 +19,7 @@ html, body {
     display: flex;
     flex-direction: column;
     margin: 2em auto;
-    padding: 5em;
+    padding: 3em;
     max-width: 320px;
     background-color: #FAE6CA;
     border: 5px solid #87796F;
@@ -28,8 +28,7 @@ html, body {
 
 input,
 button {
-
-    
+    outline: none;
     font-family: 'Rubik', sans-serif;
     font-size: 1.25em;
     border: none;
@@ -37,13 +36,34 @@ button {
     text-align: center;
     margin-top: 1em;
     padding: 1em;
-    border: 3px solid #87796F;
+    border: 3px solid #DDC9AC;
     
 }
+button:hover{
+    transition-duration: 0.2s;
+    border-color: #87796F;
+}
+button:active{
+    background-color: #87796F;
+    border-color: #EF6D7A;
+    transform: translateY(1px);
+}
+
 
 input {
     color: #87796F;
     background-color: #D7E057
+}
+
+input::placeholder{
+    color: #FAE6CA;
+}
+
+input:active, 
+input:focus{
+    border-color: #87796F;
+    color: #87796F;
+    font-weight: bold;
 }
 
 button {

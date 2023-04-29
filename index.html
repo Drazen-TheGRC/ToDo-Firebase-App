@@ -7,9 +7,11 @@
     <body>
         <div class="container">
             <img src="images/checklist.png" alt="ToDo list and a pen">
-            <input type="text" id="input-field" placeholder="ToDo">
+            <input type="text" id="input-field" placeholder="Enter ToDo" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter ToDo'">
             <button id="add-button">Add ToDo</button>
-            <script src="index.js"></script>
+            
         </div>
+
+        <script src="index.js" type="module"></script>
     </body>
 </html>
