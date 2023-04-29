@@ -30,9 +30,11 @@ toDoButtonEl.addEventListener("click", function(){
     let inputValue = inputFieldEl.value
     
     // Push input value to the db
-    push(toDoDatabase, inputValue)
-    console.log(inputValue + " added to the Firebase")
-
+    if(inputValue != ""){
+        push(toDoDatabase, inputValue)
+        console.log(inputValue + " added to the Firebase")
+    }
+    
     // Clear input field
     inputFieldEl.value = ""
 })
