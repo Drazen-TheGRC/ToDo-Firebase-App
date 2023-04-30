@@ -22,6 +22,7 @@ onValue(toDoDatabase, function(snapshot){
     // Clear toDoListEl
     clearToDoListEl()
 
+    // If snapshot exists
     if(snapshot.exists()){
         // Create an array of snapshot entries (each entry is an array of an id[0] and a value[1])
         let todoArray = Object.entries(snapshot.val())
@@ -32,8 +33,6 @@ onValue(toDoDatabase, function(snapshot){
     }else{
         // toDoListEl.innerHTML = "No toDos here... yet" 
     }
-
-    
 })
 
 /* App Stuff */ 
