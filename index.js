@@ -1,6 +1,6 @@
 /* FireBase Stuff & Browser module stuff*/
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js'
-import { getDatabase, ref, push, onValue } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js'
+import { getDatabase, ref, push, onValue, remove } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js'
 
 
 
@@ -21,11 +21,11 @@ const toDoDatabase = ref(database, "toDoDatabase")
 onValue(toDoDatabase, function(snapshot){
     // Clear toDoListEl
     clearToDoListEl()
-    // Create an array of snapshot values
-    let todoArray = Object.values(snapshot.val())
+    // Create an array of snapshot entries (each entry is an array of an id[0] and a value[1])
+    let todoArray = Object.entries(snapshot.val())
     // Append all values to toDoListEl
-    todoArray.forEach(function(currentToDo){
-        appendinputValueToToDoListEl(currentToDo)
+    todoArray.forEach(function(currentToDoEntry){
+        appendinputValueToToDoListEl(currentToDoEntry[0], currentToDoEntry[1])
     })
 })
 
@@ -62,6 +62,21 @@ function pushToDoIntoDatabase(){
     }
 }
 
-function appendinputValueToToDoListEl(inputValue){
-    toDoListEl.innerHTML += `<li>${inputValue}</li>`
+function appendinputValueToToDoListEl(inputId, inputValue){
+    //toDoListEl.innerHTML += `<li id="${inputId}">${inputValue}</li>`
+
+    // New variable to store the new HTML element
+    let newEl = document.createElement("li")
+    // Add value to the new element
+    newEl.textContent = inputValue
+    // Add event Listener to the new element so it can be deleted
+    newEl.addEventListener("click", function(){
+        // Create exact path to the element in the database for the function to be able to find it
+        let exactlocationInDatabase = ref(database, `toDoDatabase/${inputId}`)
+        // remove element from database if clicked
+        remove(exactlocationInDatabase)
+    })
+
+    // Append the new element to the list
+    toDoListEl.append(newEl)
 }
