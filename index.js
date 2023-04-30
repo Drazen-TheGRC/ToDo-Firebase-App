@@ -67,16 +67,23 @@ function appendinputValueToToDoListEl(inputId, inputValue){
 
     // New variable to store the new HTML element
     let newEl = document.createElement("li")
+    // Create exact path to the element in the database for the function to be able to find it
+    let exactlocationInDatabase = ref(database, `toDoDatabase/${inputId}`)
     // Add value to the new element
     newEl.textContent = inputValue
     // Add event Listener to the new element so it can be deleted
-    newEl.addEventListener("click", function(){
-        // Create exact path to the element in the database for the function to be able to find it
-        let exactlocationInDatabase = ref(database, `toDoDatabase/${inputId}`)
-        // remove element from database if clicked
+    newEl.addEventListener("dblclick", function(){
         remove(exactlocationInDatabase)
+    })
+
+    // add line-through when clicked
+    newEl.addEventListener("click", function(){
+        this.classList.toggle("line-through")
     })
 
     // Append the new element to the list
     toDoListEl.append(newEl)
 }
+
+
+
