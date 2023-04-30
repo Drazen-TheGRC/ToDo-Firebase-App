@@ -24,6 +24,8 @@ onValue(toDoDatabase, function(snapshot){
 
     // If snapshot exists
     if(snapshot.exists()){
+        
+        snapshotExists = true
         // Create an array of snapshot entries (each entry is an array of an id[0] and a value[1])
         let todoArray = Object.entries(snapshot.val())
         snapshotLength = todoArray.length
@@ -32,6 +34,7 @@ onValue(toDoDatabase, function(snapshot){
             appendinputValueToToDoListEl(currentToDoEntry[0], currentToDoEntry[1])
         })
     }else{
+        snapshotExists = false
         // toDoListEl.innerHTML = "No toDos here... yet" 
     }
 })
@@ -41,22 +44,29 @@ const inputFieldEl = document.getElementById("input-field")
 const toDoButtonEl = document.getElementById("add-button")
 const toDoListEl = document.getElementById("todo-list")
 
+
+let snapshotExists
 let snapshotLength
+
 
 // Button event listener 
 toDoButtonEl.addEventListener("click", function(){
-    // Push input field value to the database
-    // Limiting number of toDos to 20
-    if(snapshotLength < 20){
-        pushToDoIntoDatabase()
-        // Clear input field
-        clearInputFieldEl()
-        
-        if(snapshotLength === 20){
+
+    if(snapshotExists){
+        if(snapshotLength < 20){
+            // Push input field value to the database
+            // Limiting number of toDos to 20
+            pushToDoIntoDatabase()
+            // Clear input field
+            clearInputFieldEl()
+        }else{
             inputFieldEl.value = "Sorry, limit reached!!!"
         }
     }else{
-        inputFieldEl.value = "Sorry, limit reached!!!"
+        console.log("u else")
+        pushToDoIntoDatabase()
+        // Clear input field
+        clearInputFieldEl()
     }
 })
 
