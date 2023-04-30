@@ -26,6 +26,7 @@ onValue(toDoDatabase, function(snapshot){
     if(snapshot.exists()){
         // Create an array of snapshot entries (each entry is an array of an id[0] and a value[1])
         let todoArray = Object.entries(snapshot.val())
+        snapshotLength = todoArray.length
         // Append all values to toDoListEl
         todoArray.forEach(function(currentToDoEntry){
             appendinputValueToToDoListEl(currentToDoEntry[0], currentToDoEntry[1])
@@ -40,12 +41,23 @@ const inputFieldEl = document.getElementById("input-field")
 const toDoButtonEl = document.getElementById("add-button")
 const toDoListEl = document.getElementById("todo-list")
 
+let snapshotLength
+
 // Button event listener 
 toDoButtonEl.addEventListener("click", function(){
     // Push input field value to the database
-    pushToDoIntoDatabase()
-    // Clear input field
-    clearInputFieldEl()
+    // Limiting number of toDos to 20
+    if(snapshotLength < 20){
+        pushToDoIntoDatabase()
+        // Clear input field
+        clearInputFieldEl()
+        
+        if(snapshotLength === 20){
+            inputFieldEl.value = "Sorry, limit reached!!!"
+        }
+    }else{
+        inputFieldEl.value = "Sorry, limit reached!!!"
+    }
 })
 
 
@@ -80,6 +92,8 @@ function appendinputValueToToDoListEl(inputId, inputValue){
     // Add event Listener to the new element so it can be deleted
     newEl.addEventListener("dblclick", function(){
         remove(exactlocationInDatabase)
+        // This is to clear the limit message
+        clearInputFieldEl()
     })
 
     // add line-through when clicked
