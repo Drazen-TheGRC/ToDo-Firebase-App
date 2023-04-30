@@ -8,10 +8,14 @@
 
 
 
-html, body {
+html, 
+body,
+input,
+button,
+ul {
     margin: 0;
     padding: 0;
-
+    border: none;
     font-family: 'Rubik', sans-serif;
 }
 
@@ -23,26 +27,38 @@ html, body {
     max-width: 320px;
     background-color: #FAE6CA;
     border: 5px solid #87796F;
-    border-radius: 50px;
+    border-radius: 20px;
+}
+
+input,
+button,
+ul {
+    margin-top: 1em;
 }
 
 input,
 button {
     outline: none;
-    font-family: 'Rubik', sans-serif;
-    font-size: 1.25em;
-    border: none;
-    border-radius: 0.5em;
-    text-align: center;
-    margin-top: 1em;
-    padding: 1em;
-    border: 3px solid #DDC9AC;
     
+    font-size: 1.25em;
+    text-align: center;
+    border: 3px solid #DDC9AC;
+    border-radius: 0.5em;
+    padding: 1em;
+    
+    transition-duration: 0.5s;
+    cursor: pointer;
 }
+
+button {
+    color: #FAE6CA;
+    background-color: #EF6D7A
+}
+
 button:hover{
-    transition-duration: 0.2s;
     border-color: #87796F;
 }
+
 button:active{
     background-color: #87796F;
     border-color: #EF6D7A;
@@ -54,7 +70,6 @@ input {
     color: #87796F;
     background-color: #D7E057;
     font-weight: bold;
-    
 }
 
 input::placeholder{
@@ -62,22 +77,21 @@ input::placeholder{
 }
 
 input:active, 
-input:focus {
+input:focus,
+input:hover {
     background-color: #D7E057;
     border-color: #87796F;
     color: #87796F;
-    
-}
-
-
-
-button {
-    color: #FAE6CA;
-    background-color: #EF6D7A
 }
 
 img{
     width: 50%;
     margin: auto;
-    margin-bottom: 2em;
+}
+
+ul {
+    margin-top: 2em;
+}
+li {
+
 }
