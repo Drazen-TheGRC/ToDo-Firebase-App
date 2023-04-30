@@ -21,12 +21,19 @@ const toDoDatabase = ref(database, "toDoDatabase")
 onValue(toDoDatabase, function(snapshot){
     // Clear toDoListEl
     clearToDoListEl()
-    // Create an array of snapshot entries (each entry is an array of an id[0] and a value[1])
-    let todoArray = Object.entries(snapshot.val())
-    // Append all values to toDoListEl
-    todoArray.forEach(function(currentToDoEntry){
-        appendinputValueToToDoListEl(currentToDoEntry[0], currentToDoEntry[1])
-    })
+
+    if(snapshot.exists()){
+        // Create an array of snapshot entries (each entry is an array of an id[0] and a value[1])
+        let todoArray = Object.entries(snapshot.val())
+        // Append all values to toDoListEl
+        todoArray.forEach(function(currentToDoEntry){
+            appendinputValueToToDoListEl(currentToDoEntry[0], currentToDoEntry[1])
+        })
+    }else{
+        // toDoListEl.innerHTML = "No toDos here... yet" 
+    }
+
+    
 })
 
 /* App Stuff */ 
