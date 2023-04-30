@@ -12,11 +12,13 @@ html,
 body,
 input,
 button,
-ul {
+ul, 
+li {
     margin: 0;
     padding: 0;
     border: none;
     font-family: 'Rubik', sans-serif;
+    transition-duration: 0.5s;
 }
 
 .container {
@@ -37,7 +39,8 @@ ul {
 }
 
 input,
-button {
+button, 
+li {
     outline: none;
     
     font-size: 1.25em;
@@ -46,7 +49,7 @@ button {
     border-radius: 0.5em;
     padding: 1em;
     
-    transition-duration: 0.5s;
+    
     cursor: pointer;
 }
 
@@ -91,7 +94,27 @@ img{
 
 ul {
     margin-top: 2em;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
 }
 li {
+    
+    background-color: #87796F;
+    border-color: #EF6D7A;
+    color: #D7E057;
+    padding: 1em;
+    list-style: none;
+    flex-grow: 1;
+    text-align: center;
+    font-size: 1em;
 
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+li:hover{
+    border-color: #87796F;
+    background-color: #EF6D7A;
+    color: #D7E057;
 }
